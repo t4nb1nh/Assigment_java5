@@ -38,7 +38,6 @@ public class GioHangController {
         Integer soLuong = 0;
         for (GioHangChiTiet ghct : list) {
             soLuong += Integer.parseInt(String.valueOf(ghct.getSoLuong()));
-//            System.out.println(ghct.getId().getGioHang().getId());
         }
 
         session.removeAttribute("soLuong");
@@ -53,9 +52,11 @@ public class GioHangController {
                               HttpSession session,
                               @PathVariable("id") String id
     ) {
+
+        SanPham sanPham = sanPhamRepository.findById(id);
         Users users = (Users) session.getAttribute("userLogged");
         GioHang gioHang = gioHangRepository.findByUsers(users);
-        SanPham sanPham = sanPhamRepository.findById(id);
+        System.out.println(gioHang.getId());
         GioHangChiTiet gh = gioHangChiTietRepository.findByIdSanPhamAndIdGioHang(sanPham, gioHang);
         if (gh != null) {
             gh.setSoLuong(gh.getSoLuong() + 1);
@@ -68,6 +69,7 @@ public class GioHangController {
         gioHangChiTiet.setId(gioHangChiTietId);
         gioHangChiTiet.setSoLuong(1);
         gioHangChiTietRepository.save(gioHangChiTiet);
+
         return "redirect:/gio-hang/hien-thi";
     }
 

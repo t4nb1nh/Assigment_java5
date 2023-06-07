@@ -23,49 +23,55 @@ import java.util.Date;
 
 @Controller
 public class UserController {
-//    @Autowired
+    //    @Autowired
 //    HttpServletRequest request;
     @Autowired
     private IUsersRepo iUsersRepo;
     @Autowired
     private IGioHangRepo iGioHangRepo;
+
     @GetMapping("/login")
-    public String getFromLogin(Model model){
-        model.addAttribute("user",new Users());
+    public String getFromLogin(Model model) {
+        model.addAttribute("user", new Users());
         return "page/web/Login";
     }
+
     @PostMapping("/login")
     public String checkLogin(Model model,
-                            @Valid @ModelAttribute("user") Users users,
+                             @Valid @ModelAttribute("user") Users users,
                              BindingResult result,
                              HttpSession session,
                              RedirectAttributes attributes
-    ){
+    ) {
 
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return "/page/web/Login";
         }
-        Users userFromDb=iUsersRepo.findByUsernameAndPassword(users.getUsername(),users.getPassword());
+        Users userFromDb = iUsersRepo.findByUsernameAndPassword(users.getUsername(), users.getPassword());
 
-        if(userFromDb!=null){
-            session.setAttribute("userLogged",userFromDb);
-            if(userFromDb.isRole()==true){
+        if (userFromDb != null) {
+
+            if (userFromDb.isRole() == true) {
+                session.setAttribute("adminLogged", userFromDb);
                 return "redirect:/loai-sp/hien-thi";
-            }else{
+            } else {
+                session.setAttribute("userLogged", userFromDb);
                 return "redirect:/san-pham/trang-chu";
             }
         }
-        model.addAttribute("message","sai thong tin");
+        model.addAttribute("message", "sai thong tin");
         return "/page/web/Login";
     }
+
     @GetMapping("/signUp-form")
     public String addSanPham(Model model) {
         model.addAttribute("uesrsCreate", new Users());
         return "page/web/CreateAccount";
     }
+
     @PostMapping("/signUp")
     public String checkAdd(
-                           @Valid @ModelAttribute("uesrsCreate") Users uesrsCreate ,BindingResult result) {
+            @Valid @ModelAttribute("uesrsCreate") Users uesrsCreate, BindingResult result) {
         if (result.hasErrors()) {
             return "page/web/CreateAccount";
         }
@@ -73,12 +79,13 @@ public class UserController {
         GioHang cartUser = new GioHang();
         cartUser.setUsers(uesrsCreate);
         iUsersRepo.save(uesrsCreate);
-        if(uesrsCreate.isRole()){
+        if (uesrsCreate.isRole()) {
             iGioHangRepo.save(cartUser);
         }
 
         return "redirect:/login";
     }
+
     @GetMapping("/user/hien-thi")
     private String loaiSpPage(Model model,
                               @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
@@ -90,6 +97,7 @@ public class UserController {
         model.addAttribute("listUser", page.getContent());
         return "page/admin/Users";
     }
+
     @GetMapping("/user/edit/{id}")
     public String showUpdateForm(@PathVariable("id") String id, Model model) {
         Users users = iUsersRepo.findById(id);
@@ -97,14 +105,15 @@ public class UserController {
         model.addAttribute("loaiUser", users);
         return "page/admin/UpdateUser";
     }
+
     @PostMapping("/user/update/{id}")
     public String updateLoaiSp(@PathVariable("id") String id, @Valid Users users,
                                BindingResult result, Model model) {
 
-            users.setId(id);
+        users.setId(id);
 
         model.addAttribute("loaiUser", users);
-                iUsersRepo.save(users);
+        iUsersRepo.save(users);
         return "redirect:/user/hien-thi";
     }
 }
