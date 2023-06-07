@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+
+        .cancelbtn {
+            padding: 14px 20px;
+            background-color: #f44336;
+        }
+
+        .cancelbtn, .signupbtn {
+            float: left;
+            width: 50%;
+        }
+
+
+        .container {
+            padding: 16px;
+        }
+
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+
+        @media screen and (max-width: 300px) {
+            .cancelbtn, .signupbtn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<h2>Signup Form</h2>
+<form style="border:1px solid #ccc" th:object="${uesrsCreate}" th:action="@{/signUp}" action="#" method="post">
+    <div class="container">
+        <label><b>User Name</b></label>
+        <input type="text" th:field="*{username}" placeholder="Enter username" name="username" required>
+        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error-message"></span>
+        <label><b>Password</b></label>
+        <input type="password" th:field="*{password}" placeholder="Enter Password" name="password" required>
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-message"></span>
+
+        <label><b>Repeat Password</b></label>
+        <input type="password" placeholder="Repeat Password" name="password-repeat" required>
+        <input type="checkbox" checked="checked"> Remember me
+        <div class="clearfix">
+            <button type="submit" value="Save">Sign Up</button>
+        </div>
+    </div>
+</form>
+</body>
+</html>

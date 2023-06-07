@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /* CSS styling cho trang chi tiết sản phẩm */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .product {
+            display: flex;
+            align-items: center;
+        }
+
+        .product-image {
+            width: 200px;
+            margin-right: 20px;
+        }
+
+        .product-details {
+            flex-grow: 1;
+        }
+
+        .product-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="product">
+    <img class="product-image" th:src="'/image/'+${detail.image}" alt="Product Image">
+    <div class="product-details">
+        <h1 class="product-name" th:text="${detail.ten}"></h1>
+        <p class="product-description" th:text="${detail.moTa}"></p>
+        <p class="product-price" th:text="${detail.giaBan}"></p>
+    </div>
+</div>
+</body>
+</html>
