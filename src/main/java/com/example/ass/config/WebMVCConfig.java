@@ -29,8 +29,9 @@ public class WebMVCConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor)
-//                .addPathPatterns("/san-pham/**")
+                .addPathPatterns("/san-pham/**")
                 .addPathPatterns("/loai-sp/**")
+                .addPathPatterns("/gio-hang/**")
                 .excludePathPatterns("/login", "/signUp-form","/san-pham/trang-chu");
 
 //        LocaleChangeInterceptor changeInterceptor  = new LocaleChangeInterceptor();

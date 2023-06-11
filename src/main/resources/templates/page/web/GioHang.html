@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
 <body>
+<div  th:insert="~{layout/web/header :: nguoidung-header}"></div>
 <section class="shoping-cart spad">
     <div class="container">
         <div class="row">
@@ -36,7 +37,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="cartdetail : ${list}">
+                        <tr th:each="cartdetail : ${list}" class="gio_hang">
                             <td th:text="${list.indexOf(cartdetail) + 1}"></td>
                             <td class="shoping__cart__item">
                                 <img th:src="@{'/image/' + ${cartdetail.id.sanPham.image}}">
@@ -90,19 +91,20 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="shoping__checkout">
+                <div class="shoping__checkout" th:each="addHoaDon : ${list}">
                     <h5>Cart Total</h5>
                     <ul>
-                        <li>Subtotal <span>$454.98</span></li>
-                        <li>Total <span>$454.98</span></li>
+<!--                        <li>Subtotal <span>$454.98</span></li>-->
+                        <li>Total <span id="price"></span></li>
                     </ul>
-                    <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                    <a th:href="'/hoa-don/add/'+${addHoaDon.id.gioHang.id}" class="primary-btn">PROCEED TO CHECKOUT</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<section th:replace="~{layout/web/footer :: footer1}" ></section>
 <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
@@ -111,5 +113,15 @@
 <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="/css/style.css" type="text/css">
+<!--<script >-->
+<!--var item=document.getElementById("gio_hang");-->
+<!--for (var i = 0; i < items.length; i++) {-->
+<!--    var item = items[i];-->
+
+<!--    // Lấy giá và số lượng từ các phần tử con-->
+<!--    var price = parseFloat(item.getElementsByClassName("shoping__cart__total")[0].innerText);-->
+
+<!--}-->
+<!--</script>-->
 </body>
 </html>

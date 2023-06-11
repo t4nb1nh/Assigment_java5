@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&amp;display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+<div  th:insert="~{layout/web/header :: nguoidung-header}"></div>
+<div class="checkout__order" th:each="hoadon: ${listHoaDon}">
+    <h4>Your Order</h4>
+    <div class="checkout__order__products">Products <span>Total</span></div>
+    <ul>
+        <li th:text="${hoadon.id.sanPham.ten}"><span th:text="${hoadon.id.sanPham.giaBan}"></span></li>
+    </ul>
+    <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
+    <div class="checkout__order__total">Total <span>$750.99</span></div>
+<!--    <div class="checkout__input__checkbox">-->
+<!--        <label for="acc-or">-->
+<!--            Create an account?-->
+<!--            <input type="checkbox" id="acc-or">-->
+<!--            <span class="checkmark"></span>-->
+<!--        </label>-->
+<!--    </div>-->
+<!--    <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt-->
+<!--        ut labore et dolore magna aliqua.</p>-->
+<!--    <div class="checkout__input__checkbox">-->
+<!--        <label for="payment">-->
+<!--            Check Payment-->
+<!--            <input type="checkbox" id="payment">-->
+<!--            <span class="checkmark"></span>-->
+<!--        </label>-->
+<!--    </div>-->
+<!--    <div class="checkout__input__checkbox">-->
+<!--        <label for="paypal">-->
+<!--            Paypal-->
+<!--            <input type="checkbox" id="paypal">-->
+<!--            <span class="checkmark"></span>-->
+<!--        </label>-->
+<!--    </div>-->
+    <button type="submit" class="site-btn">PLACE ORDER</button>
+</div>
+<section th:replace="~{layout/web/footer :: footer1}" ></section>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.nice-select.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
+<script src="/js/jquery.slicknav.js"></script>
+<script src="/js/mixitup.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>

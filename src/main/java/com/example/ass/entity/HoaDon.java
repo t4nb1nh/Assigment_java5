@@ -1,14 +1,12 @@
 package com.example.ass.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -29,7 +27,7 @@ public class HoaDon implements Serializable {
     )
     private Users users;
     private String ma;
-    private String trangThai;
-    private LocalDateTime ngayTao;
-    private LocalDateTime ngayThanhToan;
+    private boolean trangThai;
+    private Date ngayTao;
+    private Date ngayThanhToan;
 }

@@ -2,9 +2,7 @@ package com.example.ass.controller;
 
 
 import com.example.ass.entity.*;
-import com.example.ass.repository.IGioHangChiTietRepo;
-import com.example.ass.repository.IGioHangRepo;
-import com.example.ass.repository.ISanPhamRepo;
+import com.example.ass.repository.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -28,6 +27,12 @@ public class GioHangController {
 
     @Autowired
     ISanPhamRepo sanPhamRepository;
+    @Autowired
+    IHoaDonChiTietRepo iHoaDonChiTietRepo;
+
+    @Autowired
+    IHoaDonRepo iHoaDonRepo;
+
 
     @GetMapping("/hien-thi")
     public String pageGioHang(Model model,
@@ -39,10 +44,10 @@ public class GioHangController {
         for (GioHangChiTiet ghct : list) {
             soLuong += Integer.parseInt(String.valueOf(ghct.getSoLuong()));
         }
-
+        session.setAttribute("idGioHang", gioHang);
         session.removeAttribute("soLuong");
         session.setAttribute("soLuong", soLuong);
-        ;
+
         model.addAttribute("list", list);
         return "page/web/GioHang";
     }
@@ -63,13 +68,18 @@ public class GioHangController {
             gioHangChiTietRepository.save(gh);
             return "redirect:/gio-hang/hien-thi";
         }
-
         GioHangChiTiet gioHangChiTiet = new GioHangChiTiet();
         GioHangChiTietId gioHangChiTietId = new GioHangChiTietId(gioHang, sanPham);
         gioHangChiTiet.setId(gioHangChiTietId);
         gioHangChiTiet.setSoLuong(1);
         gioHangChiTietRepository.save(gioHangChiTiet);
-
+        if (gh == null) {
+            HoaDon hoaDon = new HoaDon();
+            hoaDon.setUsers(users);
+            hoaDon.setNgayTao(new Date());
+            hoaDon.setTrangThai(false);
+            iHoaDonRepo.save(hoaDon);
+        }
         return "redirect:/gio-hang/hien-thi";
     }
 

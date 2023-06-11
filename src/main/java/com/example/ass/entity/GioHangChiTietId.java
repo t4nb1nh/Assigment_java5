@@ -14,7 +14,6 @@ import java.util.Objects;
 @Embeddable
 @Getter
 @Setter
-@Controller
 public class GioHangChiTietId implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idGioHang",referencedColumnName = "id")
