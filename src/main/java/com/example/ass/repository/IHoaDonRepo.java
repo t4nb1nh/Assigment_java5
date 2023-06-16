@@ -6,7 +6,9 @@ import com.example.ass.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface IHoaDonRepo extends JpaRepository<HoaDon,Integer> {
-    HoaDon findByUsers(Users users);
+    List<HoaDon> findByUsers(Users users);
 }

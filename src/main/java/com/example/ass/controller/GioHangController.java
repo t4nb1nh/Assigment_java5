@@ -73,13 +73,6 @@ public class GioHangController {
         gioHangChiTiet.setId(gioHangChiTietId);
         gioHangChiTiet.setSoLuong(1);
         gioHangChiTietRepository.save(gioHangChiTiet);
-        if (gh == null) {
-            HoaDon hoaDon = new HoaDon();
-            hoaDon.setUsers(users);
-            hoaDon.setNgayTao(new Date());
-            hoaDon.setTrangThai(false);
-            iHoaDonRepo.save(hoaDon);
-        }
         return "redirect:/gio-hang/hien-thi";
     }
 

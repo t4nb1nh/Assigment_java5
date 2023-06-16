@@ -32,7 +32,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
                 .addPathPatterns("/san-pham/**")
                 .addPathPatterns("/loai-sp/**")
                 .addPathPatterns("/gio-hang/**")
-                .excludePathPatterns("/login", "/signUp-form","/san-pham/trang-chu");
+                .excludePathPatterns("/login", "/signUp-form");
 
 //        LocaleChangeInterceptor changeInterceptor  = new LocaleChangeInterceptor();
 //        changeInterceptor.setParamName("language");

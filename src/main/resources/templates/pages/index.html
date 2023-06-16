@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/layout_web :: areas(~{::main})}">
+<head>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -20,7 +22,7 @@
 </head>
 
 <body>
-<div  th:insert="~{layout/web/header :: nguoidung-header}"></div>
+<main>
 <section>
     <section class="categories">
         <div class="container">
@@ -159,7 +161,8 @@
     </section>
 
 </section>
-<section th:replace="~{layout/web/footer :: footer1}" ></section>
+
+</main>
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.nice-select.min.js"></script>

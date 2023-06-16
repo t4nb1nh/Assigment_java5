@@ -15,7 +15,7 @@ public interface IGioHangChiTietRepo extends JpaRepository<GioHangChiTiet, GioHa
     List<GioHangChiTiet> findByIdGioHang(GioHang gioHang);
 
     @Query("select p from GioHangChiTiet p where p.id.gioHang = ?1")
-    GioHangChiTiet findAllByIdGioHang(GioHang gioHang);
+    List<GioHangChiTiet> findAllByIdGioHang(GioHang gioHang);
 
 
     GioHangChiTiet findByIdSanPhamAndIdGioHang(SanPham sanPham, GioHang gioHang);

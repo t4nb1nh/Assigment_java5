@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{layout/layout_web :: areas(~{::main})}">
+      th:fragment="areas(content)"
+>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -19,18 +20,23 @@
     <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
-
 <body>
-<main>
-<div class="checkout__order" th:each="hoadon: ${listHoaDon}">
-    <h4>Your Order</h4>
-    <div class="checkout__order__products">Products <span>Total</span></div>
-    <ul>
-        <li th:text="${hoadon.id.sanPham.ten}"><span th:text="${hoadon.id.sanPham.giaBan}"></span></li>
-    </ul>
-    <button type="submit" class="site-btn">PLACE ORDER</button>
+<div th:replace="~{layout/web/header_web :: nguoidung-header}">
 </div>
-</main>
+
+<section>
+
+    <article th:insert="${content}">
+    </article>
+
+    <!--include menu -->
+<!--    <div th:replace="~{layout/include/menu_user :: main_menu}">-->
+<!--    </div>-->
+</section>
+
+<footer>
+    <div th:replace="~{layout/web/footer_web :: footer1}"></div>
+</footer>
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.nice-select.min.js"></script>

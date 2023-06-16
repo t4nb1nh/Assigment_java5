@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/layout_web :: areas(~{::main})}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -19,7 +20,7 @@
     <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
 <body>
-<div  th:insert="~{layout/web/header :: nguoidung-header}"></div>
+<main>
 <section class="shoping-cart spad">
     <div class="container">
         <div class="row">
@@ -104,7 +105,7 @@
     </div>
 </section>
 
-<section th:replace="~{layout/web/footer :: footer1}" ></section>
+</main>
 <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
